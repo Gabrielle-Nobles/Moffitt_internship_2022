@@ -15,6 +15,10 @@ count_file_MB_GSE129730 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Inter
 counts_MB_GSE129730 <- as.data.frame(read_delim(count_file_MB_GSE129730,    #file to read in
                                    delim = '\t')) #Tab delimiter - how columns are separated
 
+# Change Na's into zeroes 
+counts_MB_GSE129730[is.na(counts_MB_GSE129730)]<- 0 
+sum(is.na(counts_MB_GSE129730)) # to check that all Na's are 0
+
 #Create a seuratobject
 seurat_object_GSE129730 <-  CreateSeuratObject(counts_MB_GSE129730, project = "GSE129730")
 
@@ -30,6 +34,11 @@ features <- "J:\\\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_20
 # ReadMtx loads in sparse data 
 counts_MB_GSE175416 <- ReadMtx(mtx, cells, features)
 
+
+# Change Na's into zeroes 
+counts_MB_GSE175416[is.na(counts_MB_GSE175416)]<- 0 
+sum(is.na(counts_MB_GSE129730)) # to check that all Na's are 0
+
 #Create a seuratobject 
 seurat_object_GSE175416 = CreateSeuratObject(counts_MB_GSE175416, 
                                              project = "GSE175416")
@@ -39,7 +48,12 @@ seurat_object_GSE175416 = CreateSeuratObject(counts_MB_GSE175416,
 #Load in expression with Read10x
 GSE122871_file<-"J:/Biostat_Interns/Nobles_Gabrielle/Moffitt_Internship_Data_2022/Internship_scRNAseq_Data_2022/Mouse_scRNAseq_Data/GSE122871_mouse_primary_GBM_10x_2022_05_27/GSE122871_scRNAseq_2022_05_27/GSE122871_barcodes_genes_matrix_2022_05_27"
 list.files(GSE122871_file) # Should show barcodes.tsv, genes.tsv, and matrix.mtx
-counts_GB_GSE122871 <- Read10X(GSE122871_file)
+counts_GB_GSE122871 <- Read10X(GSE122871_file) 
+
+
+# Change Na's into zeroes 
+counts_GB_GSE122871[is.na(counts_GB_GSE122871)]<- 0 
+sum(is.na(counts_GB_GSE122871)) # to check that all Na's are 0
 
 #Create a GSE122871 seuratobject 
 seurat_object_GSE122871 <- CreateSeuratObject(counts_GB_GSE122871,
@@ -52,8 +66,14 @@ list.files(GSE185420_file) # Should show barcodes.tsv, genes.tsv, and matrix.mtx
 counts_GB_GSE185420 <- Read10X(GSE185420_file)
 
 
+# Change Na's into zeroes 
+counts_GB_GSE185420[is.na(counts_GB_GSE185420)]<- 0 
+sum(is.na(counts_GB_GSE185420)) # to check that all Na's are 0
+
+
 #Create a seuratobject 
-seurat_object_GSE185420 <- CreateSeuratObject(counts_GB_GSE185420)
+seurat_object_GSE185420 <- CreateSeuratObject(counts_GB_GSE185420, 
+                                              project = "GSE185420")
 
 
 
@@ -64,8 +84,14 @@ GSE177901_file <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Dat
 counts_melanoma_GSE177901 <- read.table(file = GSE177901_file, header = T, row.names=1, sep="", as.is=T)
 
 
+# Change Na's into zeroes 
+counts_melanoma_GSE177901[is.na(counts_melanoma_GSE177901)]<- 0 
+sum(is.na(counts_melanoma_GSE177901)) # to check that all Na's are 0
+
+
 ####---Create a seuratobject----####
-seurat_object_GSE177901 <- CreateSeuratObject(counts_melanoma_GSE177901)
+seurat_object_GSE177901 <- CreateSeuratObject(counts_melanoma_GSE177901,
+                                              project = "GSE177901")
 
 
 #####----GSE70630----####
@@ -74,12 +100,15 @@ seurat_object_GSE177901 <- CreateSeuratObject(counts_melanoma_GSE177901)
 GSE70630_file <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Human_scRNAseq_Data\\GSE70630_human_primary_OD_Smartseq2_2022_05_20\\GSE70630_scRNAseq_2022_05_20\\GSE70630_OG_processed_data_v2.txt.gz"
 
 # Read in data as a dataframe
-counts_OD_GSE70630 <- as.data.frame(read_delim(GSE70630_file,    #file to read in
-                                   delim = '\t')) #Tab delimiter - how columns are separated
+counts_OD_GSE70630 <- read.table(GSE70630_file)
+
+# Change Na's into zeroes 
+counts_OD_GSE70630[is.na(counts_OD_GSE70630)]<- 0 
+sum(is.na(counts_OD_GSE70630)) # to check that all Na's are 0
 
 
 ####---Create a seurat_object_GSE70630----####
-seurat_object_GSE70630 <- CreateSeuratObject(counts_OD_GSE70630)
+seurat_object_GSE70630 <- CreateSeuratObject(counts_OD_GSE70630, project = "GSE70630")
 
 
 
@@ -94,6 +123,7 @@ Combined_seurat_object <- merge(seurat_object_GSE129730,
                                                  "GB_GSE122871","GB_GSE185420", 
                                                  "Melanoma_GSE177901", "OD_GSE70630"), 
                                 project = "Combined_seurat_object")
+
 
 
 # Find high variable features of Combined_seurat_object
@@ -145,72 +175,72 @@ DimPlot(Combined_seurat_object,reduction = "tsne", label= T, repel = F,
 DimPlot(Combined_seurat_object, reduction = "umap",group.by = "orig.ident", seed = 1)
 
 
-
-
-####----Normalized_seurat_object merge seurat object ----####
-# Normzlize GSE129730 and GSE175416 seurat objects 
-seurat_object_GSE129730_normalized <- NormalizeData(seurat_object_GSE129730,
-                                                    normalization.method = "CLR")
-
-seurat_object_GSE175416_normalized <- NormalizeData(seurat_object_GSE175416,
-                                                    normalization.method = "CLR")
-
-seurat_object_GSE122871_normalized <- NormalizeData(seurat_object_GSE122871,
-                                                    normalization.method = "CLR")
-
-
-# Merged normalized data 
-Normalized_seurat_object <- merge(seurat_object_GSE129730_normalized,
-                       y = c(seurat_object_GSE175416_normalized,seurat_object_GSE122871_normalized),
-                         add.cell.ids = c("GSE129730_normalized", "GSE175416_normalized","GSE122871_normalized"),
-                       project = "Normalized_seurat_object ",merge.data = TRUE)
-
+# 
+# 
+# ####----Normalized_seurat_object merge seurat object ----####
+# # Normzlize GSE129730 and GSE175416 seurat objects 
+# seurat_object_GSE129730_normalized <- NormalizeData(seurat_object_GSE129730,
+#                                                     normalization.method = "CLR")
+# 
+# seurat_object_GSE175416_normalized <- NormalizeData(seurat_object_GSE175416,
+#                                                     normalization.method = "CLR")
+# 
+# seurat_object_GSE122871_normalized <- NormalizeData(seurat_object_GSE122871,
+#                                                     normalization.method = "CLR")
+# 
+# 
+# # Merged normalized data 
+# Normalized_seurat_object <- merge(seurat_object_GSE129730_normalized,
+#                        y = c(seurat_object_GSE175416_normalized,seurat_object_GSE122871_normalized),
+#                          add.cell.ids = c("GSE129730_normalized", "GSE175416_normalized","GSE122871_normalized"),
+#                        project = "Normalized_seurat_object ",merge.data = TRUE)
+# 
 
 # Find high variable features 
-
-Normalized_seurat_object<- FindVariableFeatures(Normalized_seurat_object, selection.method = "vst", 
-                                      nfeatures = 2000)
+# 
+# Normalized_seurat_object<- FindVariableFeatures(Normalized_seurat_object, selection.method = "vst", 
+#                                       nfeatures = 2000)
 
 # Identify Top 10 HVG
 top10 <- head(VariableFeatures(Normalized_seurat_object), 10)
 top10
 
-# ScaleData converts normalized gene expression to Z-score 
-all.genes <- rownames(Normalized_seurat_object)
-Normalized_seurat_object<- ScaleData(Normalized_seurat_object, features = all.genes)
+# # ScaleData converts normalized gene expression to Z-score 
+# all.genes <- rownames(Normalized_seurat_object)
+# Normalized_seurat_object<- ScaleData(Normalized_seurat_object, features = all.genes)
+# 
 
+# ####---- Normalized_seurat_object Dimensional Reduction----####
+# # Run PCA for linear dimensional reduction 
+# Normalized_seurat_object<- RunPCA(Normalized_seurat_object,
+#                         features = VariableFeatures(object = Normalized_seurat_object), 
+#                         seed.use = 42)
+# 
+# ####---- Normalized_seurat_object Cluster the Cells----####
+# # Compute nearest neighbor grqph and SNN: shared nearest neighbor 
+# Normalized_seurat_object <- FindNeighbors(Normalized_seurat_object, dims = 1:10)
+# 
+# # Find clusters 
+# Normalized_seurat_object <- FindClusters(Normalized_seurat_object, resolution = 0.5)
+# 
 
-####---- Normalized_seurat_object Dimensional Reduction----####
-# Run PCA for linear dimensional reduction 
-Normalized_seurat_object<- RunPCA(Normalized_seurat_object,
-                        features = VariableFeatures(object = Normalized_seurat_object), 
-                        seed.use = 42)
+# ####----tSNE----####
+# # Generate a TSNE and Umap for visualization 
+# Normalized_seurat_object <- RunTSNE (Normalized_seurat_object,
+#                                      dims = 1:10, check_duplicates = FALSE,
+#                           seed.use = 1) 
+# 
+# Normalized_seurat_object <- RunUMAP(Normalized_seurat_object, 
+#                                     dims = 1:10, check_duplicates = FALSE,
+#                          seed.use = 42) 
+# 
 
-####---- Normalized_seurat_object Cluster the Cells----####
-# Compute nearest neighbor grqph and SNN: shared nearest neighbor 
-Normalized_seurat_object <- FindNeighbors(Normalized_seurat_object, dims = 1:10)
-
-# Find clusters 
-Normalized_seurat_object <- FindClusters(Normalized_seurat_object, resolution = 0.5)
-
-
-####----tSNE----####
-# Generate a TSNE and Umap for visualization 
-Normalized_seurat_object <- RunTSNE (Normalized_seurat_object,
-                                     dims = 1:10, check_duplicates = FALSE,
-                          seed.use = 1) 
-
-Normalized_seurat_object <- RunUMAP(Normalized_seurat_object, 
-                                    dims = 1:10, check_duplicates = FALSE,
-                         seed.use = 42) 
-
-
-# DimPlot use tsne by default, Seurat clusters as identity  
-DimPlot(Normalized_seurat_object, reduction = "tsne",
-        group.by = "orig.ident",seed = 1) 
-
-DimPlot(Normalized_seurat_object,reduction = "tsne", label= T, repel = F, 
-        label.size = 4, group.by = "seurat_clusters", seed = 1)
+# # DimPlot use tsne by default, Seurat clusters as identity  
+# DimPlot(Normalized_seurat_object, reduction = "tsne",
+#         group.by = "orig.ident",seed = 1) 
+# 
+# DimPlot(Normalized_seurat_object,reduction = "tsne", label= T, repel = F, 
+#         label.size = 4, group.by = "seurat_clusters", seed = 1)
 
 
 
@@ -223,16 +253,16 @@ mouseRNA.ref <- celldex::MouseRNAseqData()
 
 
 # Convert Seurat object to a single cell experiment for convince 
-sce.normalized <- as.SingleCellExperiment(DietSeurat(Normalized_seurat_object))
+# sce.normalized <- as.SingleCellExperiment(DietSeurat(Normalized_seurat_object))
 
 
 sce.combined <- as.SingleCellExperiment((DietSeurat(Combined_seurat_object)))
 
-#mouseRNAseq data sce.normalized 
-mouse.main <- SingleR(test = sce.normalized,assay.type.test = 1,ref = mouseRNA.ref,
-                       labels = mouseRNA.ref$label.main)
-mouse.fine <- SingleR(test = sce.normalized,assay.type.test = 1,ref = mouseRNA.ref,
-                       labels = mouseRNA.ref$label.fine)
+# #mouseRNAseq data sce.normalized 
+# mouse.main <- SingleR(test = sce.normalized,assay.type.test = 1,ref = mouseRNA.ref,
+#                        labels = mouseRNA.ref$label.main)
+# mouse.fine <- SingleR(test = sce.normalized,assay.type.test = 1,ref = mouseRNA.ref,
+#                        labels = mouseRNA.ref$label.fine)
 
 #mouseRNAseq data sce.combined
 mouse.main <- SingleR(test = sce.combined,assay.type.test = 1,ref = mouseRNA.ref,
@@ -240,26 +270,26 @@ mouse.main <- SingleR(test = sce.combined,assay.type.test = 1,ref = mouseRNA.ref
 mouse.fine <- SingleR(test = sce.combined,assay.type.test = 1,ref = mouseRNA.ref,
                       labels = mouseRNA.ref$label.fine)
 
-
-# mouseRNA Normalized_seurat_object 
-Normalized_seurat_object@meta.data$mouse.main <- mouse.main$pruned.labels
-Normalized_seurat_object@meta.data$mouse.fine <- mouse.fine$pruned.labels
+# 
+# # mouseRNA Normalized_seurat_object 
+# Normalized_seurat_object@meta.data$mouse.main <- mouse.main$pruned.labels
+# Normalized_seurat_object@meta.data$mouse.fine <- mouse.fine$pruned.labels
 
 # mouseRNA Combined_seurat_object
 Combined_seurat_object@meta.data$mouse.main <- mouse.main$pruned.labels
 Combined_seurat_object@meta.data$mouse.fine <- mouse.fine$pruned.labels
 
 
-# mouseRNA Normalized_seurat_object
-Normalized_seurat_object<- SetIdent(Normalized_seurat_object, value = "mouse.fine")
+# # mouseRNA Normalized_seurat_object
+# Normalized_seurat_object<- SetIdent(Normalized_seurat_object, value = "mouse.fine")
 
-# mouseRNA MB_combind
+# mouseRNA MB_combined
 Combined_seurat_object <- SetIdent(Combined_seurat_object, value = "mouse.fine")
 
-## Tsne Normalized_seurat_object
-DimPlot(Normalized_seurat_object, group.by = "mouse.fine", label = T , repel = F,
-        label.size = 1.7, reduction = "tsne" ,seed = 1) 
-  
+# ## Tsne Normalized_seurat_object
+# DimPlot(Normalized_seurat_object, group.by = "mouse.fine", label = T , repel = F,
+#         label.size = 1.7, reduction = "tsne" ,seed = 1) 
+#   
 
 
 ## tsne Combined_seurat_object
