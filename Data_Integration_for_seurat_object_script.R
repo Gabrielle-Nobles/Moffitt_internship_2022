@@ -15,9 +15,6 @@ count_file_MB_GSE129730 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Inter
 counts_MB_GSE129730 <- as.data.frame(read_delim(count_file_MB_GSE129730,    #file to read in
                                    delim = '\t')) #Tab delimiter - how columns are separated
 
-# Change Na's into zeroes 
-counts_MB_GSE129730[is.na(counts_MB_GSE129730)]<- 0 
-sum(is.na(counts_MB_GSE129730)) # to check that all Na's are 0
 
 #Create a seuratobject
 seurat_object_GSE129730 <-  CreateSeuratObject(counts_MB_GSE129730, project = "GSE129730")
@@ -35,10 +32,6 @@ features <- "J:\\\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_20
 counts_MB_GSE175416 <- ReadMtx(mtx, cells, features)
 
 
-# Change Na's into zeroes 
-counts_MB_GSE175416[is.na(counts_MB_GSE175416)]<- 0 
-sum(is.na(counts_MB_GSE129730)) # to check that all Na's are 0
-
 #Create a seuratobject 
 seurat_object_GSE175416 = CreateSeuratObject(counts_MB_GSE175416, 
                                              project = "GSE175416")
@@ -50,11 +43,6 @@ GSE122871_file<-"J:/Biostat_Interns/Nobles_Gabrielle/Moffitt_Internship_Data_202
 list.files(GSE122871_file) # Should show barcodes.tsv, genes.tsv, and matrix.mtx
 counts_GB_GSE122871 <- Read10X(GSE122871_file) 
 
-
-# Change Na's into zeroes 
-counts_GB_GSE122871[is.na(counts_GB_GSE122871)]<- 0 
-sum(is.na(counts_GB_GSE122871)) # to check that all Na's are 0
-
 #Create a GSE122871 seuratobject 
 seurat_object_GSE122871 <- CreateSeuratObject(counts_GB_GSE122871,
                                               project = "GSE122871")
@@ -65,28 +53,15 @@ GSE185420_file <-"J:/Biostat_Interns/Nobles_Gabrielle/Moffitt_Internship_Data_20
 list.files(GSE185420_file) # Should show barcodes.tsv, genes.tsv, and matrix.mtx
 counts_GB_GSE185420 <- Read10X(GSE185420_file)
 
-
-# Change Na's into zeroes 
-counts_GB_GSE185420[is.na(counts_GB_GSE185420)]<- 0 
-sum(is.na(counts_GB_GSE185420)) # to check that all Na's are 0
-
-
 #Create a seuratobject 
 seurat_object_GSE185420 <- CreateSeuratObject(counts_GB_GSE185420, 
                                               project = "GSE185420")
-
-
 
 #####----GSE177901----#####
 # Path and file name of downloaded data - Change this to whatever your path is
 GSE177901_file <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE177901_mouse_metastic_melanoma_10x_2022_05_27\\GSE177901_scRNAseq_2022_05_27\\GSE177901_scRNA-combinedEXP.txt.gz"
 
 counts_melanoma_GSE177901 <- read.table(file = GSE177901_file, header = T, row.names=1, sep="", as.is=T)
-
-
-# Change Na's into zeroes 
-counts_melanoma_GSE177901[is.na(counts_melanoma_GSE177901)]<- 0 
-sum(is.na(counts_melanoma_GSE177901)) # to check that all Na's are 0
 
 
 ####---Create a seuratobject----####
@@ -102,15 +77,53 @@ GSE70630_file <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data
 # Read in data as a dataframe
 counts_OD_GSE70630 <- read.table(GSE70630_file)
 
-# Change Na's into zeroes 
-counts_OD_GSE70630[is.na(counts_OD_GSE70630)]<- 0 
-sum(is.na(counts_OD_GSE70630)) # to check that all Na's are 0
-
-
 ####---Create a seurat_object_GSE70630----####
 seurat_object_GSE70630 <- CreateSeuratObject(counts_OD_GSE70630, project = "GSE70630")
 
 
+#####----GSE133531----####
+
+#GSM3934450_ET_CT_12 files 
+mtx <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_matrix.mtx.gz" # matrix  
+cells <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_barcodes.tsv.gz" # barcode
+features <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_genes.tsv.gz" # gene
+
+# ReadMtx loads in sparse data 
+counts_GSM3934450_ET_CT_12 <- ReadMtx(mtx, cells, features)
+
+# seurat object GMS3934450  
+seurat_object_GSM3934450 <- CreateSeuratObject(counts_GSM3934450_ET_CT_12, 
+                                              project = "GMS3934450")
+
+# GSM3934455_ET_PO_12 files 
+mtx <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_matrix.mtx.gz" # matrix  
+cells <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_barcodes.tsv.gz" # barcode
+features <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_genes.tsv.gz" # gene
+# ReadMtx loads in sparse data 
+counts_GSM3934455_ET_PO_12 <- ReadMtx(mtx, cells, features)
+
+# seurat object GSM3934455  
+seurat_object_GSM3934455 <- CreateSeuratObject(counts_GSM3934455_ET_PO_12, 
+                                               project = "GSM3934455")
+
+
+# GSM3934455_ET_PO_12 files 
+mtx <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_matrix.mtx.gz" # matrix  
+cells <-"J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_barcodes.tsv.gz"  # barcode
+features <-"J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_genes.tsv.gz"  # gene
+# ReadMtx loads in sparse data 
+counts_GSM3934454_C57BL6-P6-cortex <- ReadMtx(mtx, cells, features)
+
+# Seurat object GSM
+seurat_object_GSM3934454 <- CreateSeuratObject(counts_GSM3934454_C57BL6-P6-cortex, 
+                                               project = "GSM3934454")
+
+seurat_object_GSE133531 <- merge(seurat_object_GSM3934450,
+                                 y = c(seurat_object_GSM3934455,
+                                       seurat_object_GSM3934454 ), 
+                                 add.cel.ids = c("GSM3934450", "GSM3934455", 
+                                                 "GSM3934454"), 
+                                 project = "GSE133531")
 
 
 ######---- Combined_seurat_object QC----####
@@ -118,10 +131,11 @@ seurat_object_GSE70630 <- CreateSeuratObject(counts_OD_GSE70630, project = "GSE7
 Combined_seurat_object <- merge(seurat_object_GSE129730,
                                 y = c(seurat_object_GSE175416,seurat_object_GSE122871, 
                                       seurat_object_GSE185420, seurat_object_GSE177901,
-                                      seurat_object_GSE70630),
+                                      seurat_object_GSE70630, seurat_object_GSE133531),
                                 add.cell.ids = c("MB_GSE129730", "MB_GSE175416", 
                                                  "GB_GSE122871","GB_GSE185420", 
-                                                 "Melanoma_GSE177901", "OD_GSE70630"), 
+                                                 "Melanoma_GSE177901", "OD_GSE70630",
+                                                 "GSE133531"), 
                                 project = "Combined_seurat_object")
 
 
