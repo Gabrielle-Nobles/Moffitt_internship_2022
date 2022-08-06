@@ -24,12 +24,12 @@ seurat_object_GSE129730 <-  CreateSeuratObject(counts_MB_GSE129730, project = "G
 #####---- GSE175416 Seurat Object ----#####
 # Assign file paths to mtx, cells, features to read in files separately
 
-mtx <- "J:\\\\Biostat_Interns\\\\Nobles_Gabrielle\\\\Moffitt_Internship_Data_2022\\\\Internship_scRNAseq_Data_2022\\\\Mouse_scRNAseq_Data\\\\GSE175416_mouse_primary_MB_10x_2022_05_27\\\\GSE175416_scRNA_seq_2022_05_27\\\\GSE175416_RAW\\\\GSM5333101_Primary_Tumor-matrix.mtx.gz"
-cells <- "J:\\\\Biostat_Interns\\\\Nobles_Gabrielle\\\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE175416_mouse_primary_MB_10x_2022_05_27\\GSE175416_scRNA_seq_2022_05_27\\GSE175416_RAW\\GSM5333101_Primary_Tumor-barcodes.tsv.gz"
-features <- "J:\\\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE175416_mouse_primary_MB_10x_2022_05_27\\GSE175416_scRNA_seq_2022_05_27\\GSE175416_RAW\\GSM5333101_Primary_Tumor-genes.tsv.gz"
+mtx_1 <- "J:\\\\Biostat_Interns\\\\Nobles_Gabrielle\\\\Moffitt_Internship_Data_2022\\\\Internship_scRNAseq_Data_2022\\\\Mouse_scRNAseq_Data\\\\GSE175416_mouse_primary_MB_10x_2022_05_27\\\\GSE175416_scRNA_seq_2022_05_27\\\\GSE175416_RAW\\\\GSM5333101_Primary_Tumor-matrix.mtx.gz"
+cells_1 <- "J:\\\\Biostat_Interns\\\\Nobles_Gabrielle\\\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE175416_mouse_primary_MB_10x_2022_05_27\\GSE175416_scRNA_seq_2022_05_27\\GSE175416_RAW\\GSM5333101_Primary_Tumor-barcodes.tsv.gz"
+features_1 <- "J:\\\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE175416_mouse_primary_MB_10x_2022_05_27\\GSE175416_scRNA_seq_2022_05_27\\GSE175416_RAW\\GSM5333101_Primary_Tumor-genes.tsv.gz"
 
 # ReadMtx loads in sparse data 
-counts_MB_GSE175416 <- ReadMtx(mtx, cells, features)
+counts_MB_GSE175416 <- ReadMtx(mtx_1, cells_1, features_1)
 
 
 #Create a seuratobject 
@@ -68,7 +68,6 @@ counts_melanoma_GSE177901 <- read.table(file = GSE177901_file, header = T, row.n
 seurat_object_GSE177901 <- CreateSeuratObject(counts_melanoma_GSE177901,
                                               project = "GSE177901")
 
-
 #####----GSE70630----####
 
 # Path and file name of downloaded data - Change this to whatever your path is
@@ -84,23 +83,23 @@ seurat_object_GSE70630 <- CreateSeuratObject(counts_OD_GSE70630, project = "GSE7
 #####----GSE133531----####
 
 #GSM3934450_ET_CT_12 files 
-mtx <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_matrix.mtx.gz" # matrix  
-cells <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_barcodes.tsv.gz" # barcode
-features <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_genes.tsv.gz" # gene
+mtx_2 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_matrix.mtx.gz" # matrix  
+cells_2 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_barcodes.tsv.gz" # barcode
+features_2 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934450_ET_CT_12_genes.tsv.gz" # gene
 
 # ReadMtx loads in sparse data 
-counts_GSM3934450_ET_CT_12 <- ReadMtx(mtx, cells, features)
+counts_GSM3934450_ET_CT_12 <- ReadMtx(mtx_2, cells_2, features_2)
 
 # seurat object GMS3934450  
 seurat_object_GSM3934450 <- CreateSeuratObject(counts_GSM3934450_ET_CT_12, 
                                               project = "GMS3934450")
 
 # GSM3934455_ET_PO_12 files 
-mtx <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_matrix.mtx.gz" # matrix  
-cells <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_barcodes.tsv.gz" # barcode
-features <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_genes.tsv.gz" # gene
+mtx_3 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_matrix.mtx.gz" # matrix  
+cells_3 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_barcodes.tsv.gz" # barcode
+features_3 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934455_ET_PO_12_genes.tsv.gz" # gene
 # ReadMtx loads in sparse data 
-counts_GSM3934455_ET_PO_12 <- ReadMtx(mtx, cells, features)
+counts_GSM3934455_ET_PO_12 <- ReadMtx(mtx_3, cells_3, features_3)
 
 # seurat object GSM3934455  
 seurat_object_GSM3934455 <- CreateSeuratObject(counts_GSM3934455_ET_PO_12, 
@@ -108,22 +107,23 @@ seurat_object_GSM3934455 <- CreateSeuratObject(counts_GSM3934455_ET_PO_12,
 
 
 # GSM3934455_ET_PO_12 files 
-mtx <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_matrix.mtx.gz" # matrix  
-cells <-"J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_barcodes.tsv.gz"  # barcode
-features <-"J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_genes.tsv.gz"  # gene
-# ReadMtx loads in sparse data 
-counts_GSM3934454_C57BL6-P6-cortex <- ReadMtx(mtx, cells, features)
+mtx_4 <- "J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_matrix.mtx.gz" # matrix  
+cells_4 <-"J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_barcodes.tsv.gz"  # barcode
+features_4 <-"J:\\Biostat_Interns\\Nobles_Gabrielle\\Moffitt_Internship_Data_2022\\Internship_scRNAseq_Data_2022\\Mouse_scRNAseq_Data\\GSE133531_mouse_primary_10x_2022_05_24\\GSE133531_scRNAseq_2022_05_24\\GSM3934454_C57BL6-P6-cortex_genes.tsv.gz"  # gene
 
-# Seurat object GSM
-seurat_object_GSM3934454 <- CreateSeuratObject(counts_GSM3934454_C57BL6-P6-cortex, 
+# ReadMtx loads in sparse data 
+counts_GSM3934454_C57BL6_P6_cortex <- ReadMtx(mtx_4, cells_4, features_4)
+
+# Seurat object GSM3934454
+seurat_object_GSM3934454 <- CreateSeuratObject(counts_GSM3934454_C57BL6_P6_cortex, 
                                                project = "GSM3934454")
 
 seurat_object_GSE133531 <- merge(seurat_object_GSM3934450,
-                                 y = c(seurat_object_GSM3934455,
-                                       seurat_object_GSM3934454 ), 
-                                 add.cel.ids = c("GSM3934450", "GSM3934455", 
-                                                 "GSM3934454"), 
-                                 project = "GSE133531")
+                                y = c(seurat_object_GSM3934455,seurat_object_GSM3934454),
+                                add.cell.ids = c("GSM3934450","GSM3934455","GSM3934454"), 
+                                project = "GSE133531")
+
+
 
 
 ######---- Combined_seurat_object QC----####
@@ -138,7 +138,10 @@ Combined_seurat_object <- merge(seurat_object_GSE129730,
                                                  "GSE133531"), 
                                 project = "Combined_seurat_object")
 
-
+# Replace the NA's with 0 
+Combined_seurat_object@assays[["RNA"]]@data@x[is.na(Combined_seurat_object@assays[["RNA"]]@data@x)]<- 0
+Combined_seurat_object@meta.data[is.na(Combined_seurat_object@meta.data)] <- 0 
+Combined_seurat_object@assays[["RNA"]]@counts@x[is.na(Combined_seurat_object@assays[["RNA"]]@counts@x)] <- 0 
 
 # Find high variable features of Combined_seurat_object
 Combined_seurat_object <- FindVariableFeatures(Combined_seurat_object, selection.method = "vst", 
